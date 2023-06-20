@@ -1,0 +1,58 @@
+yn@ubuntu-22-04-desktop:~$ touch domestic-animal pack-animals
+yn@ubuntu-22-04-desktop:~$ ls
+
+yn@ubuntu-22-04-desktop:~$ cat > domestic-animal << EOF
+> Кошка1
+> Собака1
+> Собака2
+> Хомяк1
+> Хомяк2
+> EOF
+yn@ubuntu-22-04-desktop:~$ cat domestic-animal
+Кошка1
+Собака1
+Собака2
+Хомяк1
+Хомяк2
+
+
+yn@ubuntu-22-04-desktop:~$ cat > pack-animals << EOF
+> Лошадь1
+> Лошадь2
+> Верблюд1
+> Осел1
+> Осел2
+yn@ubuntu-22-04-desktop:~$ cat  pack-animals
+Лошадь1
+Лошадь2
+Верблюд1
+Осел1
+Осел2
+
+yn@ubuntu-22-04-desktop:~$ cat domestic-animal pack-animals > human-friends
+yn@ubuntu-22-04-desktop:~$ cat human-friends
+Кошка1
+Собака1
+Собака2
+Хомяк1
+Хомяк2
+Лошадь1
+Лошадь2
+Верблюд1
+Осел1
+Осел2
+
+yn@ubuntu-22-04-desktop:~$ mkdir friends
+yn@ubuntu-22-04-desktop:~$ mv human-friends ./friends/
+yn@ubuntu-22-04-desktop:~$ cat friends/human-friends
+Кошка1
+Собака1
+Собака2
+Хомяк1
+Хомяк2
+Лошадь1
+Лошадь2
+Верблюд1
+Осел1
+Осел2
+
