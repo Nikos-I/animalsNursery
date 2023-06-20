@@ -1,8 +1,6 @@
+import java.io.IOException;
 import java.sql.Date;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-
+import java.sql.SQLException;
 import static java.lang.String.valueOf;
 
 public class Animal {
@@ -11,12 +9,10 @@ public class Animal {
     String typeAnimal="";
     Date dateOfBirth=null;
     String usingAnimal=null;
-    ArrayList<Commands> animalCommands;
 
-    public Animal addAnimal(Animal newAnimal) {
-        DbManager dBM = new DbManager();
-        Animal animal = dBM.addAnimalToDB(newAnimal);
-        return animal;
+    public void addAnimal(String name, String dateBirthDay, int idtypeAnimal) throws SQLException, IOException {
+        DbManager DBman = new DbManager();
+        DBman.addAnimalsToDB(name, dateBirthDay, idtypeAnimal);
     }
 
     public Animal editAnimal(Animal eAnimal) {

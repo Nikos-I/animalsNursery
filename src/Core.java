@@ -62,12 +62,11 @@ public class Core {
         System.out.println("1. Добавить животное в питомник");
         System.out.println("2. Удалить животное из питомника");
         System.out.println("3. Просмотреть информацию о конкретном животном");
-//            System.out.println("4. Заставить конкретное животное издать звук");
+        System.out.println("4. Просмотреть информацию о молодых животных в питомнике");
         System.out.println("5. Просмотреть информацию о всех животных в питомнике");
         System.out.println("6. Управлять классификаторами животных");
         System.out.println("7. Получить справку о меню");
-//            System.out.println("7. Выйти");
         System.out.println("8. Выйти");
-
     }
+    
 }

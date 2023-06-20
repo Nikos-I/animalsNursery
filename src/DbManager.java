@@ -56,32 +56,32 @@ public class DbManager {
         boolean res=false;
         return res;
     }
-	ArrayList<Animal> listAnimalsFromDB(int id) throws SQLException, IOException {
-		String query = ""; //
-		if (id >= 0) query = "select * from fullanimal where idanimal = " + Integer.toString(id);
-		else  query = "select * from fullanimal";
+    ArrayList<Animal> listAnimalsFromDB(int id) throws SQLException, IOException {
+        String query = ""; //
+        if (id >= 0) query = "select * from fullanimal where idanimal = " + Integer.toString(id);
+        else  query = "select * from fullanimal";
 
         getConnection();
-		ResultSet rsLocal = execSQL(query);
-		ArrayList<Animal> listAni = new ArrayList();
+        ResultSet rsLocal = execSQL(query);
+        ArrayList<Animal> listAni = new ArrayList();
 
-		try {
-			while (rsLocal.next()) {
-				Animal ani=new Animal();
-				ani.idAnimal=rsLocal.getInt(1);
-				ani.nameAnimal=rsLocal.getString(2);
-				ani.typeAnimal=rsLocal.getString(3);
-				ani.usingAnimal=rsLocal.getString(4);
-				ani.dateOfBirth=rsLocal.getDate(5);
-				listAni.add(ani);
-			}
-		} catch (SQLException sqlEx) {
-			sqlEx.printStackTrace();
-		} finally {
+        try {
+            while (rsLocal.next()) {
+                Animal ani=new Animal();
+                ani.idAnimal=rsLocal.getInt(1);
+                ani.nameAnimal=rsLocal.getString(2);
+                ani.typeAnimal=rsLocal.getString(3);
+                ani.usingAnimal=rsLocal.getString(4);
+                ani.dateOfBirth=rsLocal.getDate(5);
+                listAni.add(ani);
+            }
+        } catch (SQLException sqlEx) {
+            sqlEx.printStackTrace();
+        } finally {
             closeSQL();
-		}
-		return listAni;
-	}
+        }
+        return listAni;
+    }
 
     ArrayList<String> listCommandFromDB(int id) throws SQLException, IOException {
         String query="select command from commandsanimal where idanimal = " + id;
@@ -101,6 +101,35 @@ public class DbManager {
             closeSQL();
         }
         return listCom;
+    }
+
+    // Список типов животных
+    ArrayList<TypeAnimal> listTypeAnimalsFromDB() throws SQLException, IOException {
+        String query="SELECT t.idtypeAnimal, t.typeAnimal FROM typeanimals t";
+        getConnection();
+        ResultSet rsLocal=execSQL(query);
+        ArrayList<TypeAnimal> listType=new ArrayList();
+
+        try {
+            while (rsLocal.next()) {
+                TypeAnimal type=new TypeAnimal();
+                type.idTypeAnimal=rsLocal.getInt(1);
+                type.typeAnimal=rsLocal.getString(2);
+                listType.add(type);
+            }
+        } catch (SQLException sqlEx) {
+            sqlEx.printStackTrace();
+        } finally {
+            closeSQL();
+        }
+        return listType;
+
+    }
+    void addAnimalsToDB(String name, String date, int type) throws SQLException, IOException {
+        String query="INSERT INTO animals (nameAnimal, idTypeAnimal, dateOfBirth) VALUES (" +
+                name + type + date + ");";
+        getConnection();
+        ResultSet rsLocal=execSQL(query);
     }
 
 }
